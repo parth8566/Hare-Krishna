@@ -10,6 +10,15 @@
       "rate": 1200,
       "is_active": true,
       "id": 1
+    },
+    {
+      "name": "Bio 1111",
+      "hsn_code": "4402900",
+      "gst_rate": 5,
+      "unit": "MT",
+      "rate": 1200,
+      "is_active": true,
+      "id": 2
     }
   ],
   "invoices": [],
