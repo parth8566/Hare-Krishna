@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T05:01:54.569Z",
+  "exported_at": "2026-08-02T05:02:30.310Z",
   "customers": [
     {
       "name": "Kreya",
@@ -116,14 +116,16 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T05:00:17.230Z"
+    "github_last_synced": "2026-08-02T05:01:57.025Z"
   },
   "seq": {
     "products": 2,
     "suppliers": 1,
     "purchase_orders": 4,
     "customers": 1,
-    "invoices": 1
+    "invoices": 1,
+    "grns": 1,
+    "grn_ref": 1
   },
   "users": [
     {
@@ -202,7 +204,7 @@
       "po_number": "PO/2026-27/0001",
       "financial_year": "2026-27",
       "sequence_no": 1,
-      "grn_status": "Not Received",
+      "grn_status": "Fully Received",
       "supplier_id": 1,
       "po_date": "2026-07-31",
       "incoterms": "EXW",
@@ -218,11 +220,11 @@
       "amount_in_words": "Rupees One Thousand Two Hundred Sixty Only",
       "remarks": "Test PO -001",
       "tax_type": "CGST_SGST",
-      "status": "Approved",
+      "status": "Closed",
       "items": [
         {
           "sr_no": 1,
-          "received_qty": 0,
+          "received_qty": 1,
           "description": "Bio Coal",
           "hsn_code": "4402900",
           "gst_rate": 5,
@@ -361,7 +363,28 @@
   "poCounters": {
     "2026-27": 4
   },
-  "grns": [],
+  "grns": [
+    {
+      "id": 1,
+      "grn_ref": "GRN-00001",
+      "date": "2026-08-02",
+      "type": "Against PO",
+      "po_id": 1,
+      "po_number": "PO/2026-27/0001",
+      "supplier_id": 1,
+      "items": [
+        {
+          "product_line": "Bio Coal",
+          "unit": "MT",
+          "accepted_qty": 1,
+          "rejected_qty": 0,
+          "damaged_qty": 0
+        }
+      ],
+      "remarks": "",
+      "reversed": false
+    }
+  ],
   "goodsReturns": [],
   "stockMovements": [],
   "stockThresholds": {},
