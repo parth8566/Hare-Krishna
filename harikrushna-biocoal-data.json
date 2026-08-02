@@ -1,6 +1,23 @@
 {
-  "exported_at": "2026-08-02T04:51:49.540Z",
-  "customers": [],
+  "exported_at": "2026-08-02T04:52:45.326Z",
+  "customers": [
+    {
+      "name": "Kreya",
+      "gstin": "NA",
+      "address": "Kreya Patel",
+      "pincode": "382330",
+      "city": "Kapadwanj",
+      "country": "India",
+      "contact_person": "Parthkumar Patel",
+      "mobile": "7623086740",
+      "email": "patelparth3061998@gmail.com",
+      "state": "Gujarat",
+      "state_code": "24",
+      "pan": "NA",
+      "is_active": true,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "name": "Bio CoalAAAABBBB",
@@ -61,12 +78,13 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T04:50:41.567Z"
+    "github_last_synced": "2026-08-02T04:51:51.747Z"
   },
   "seq": {
     "products": 2,
     "suppliers": 1,
-    "purchase_orders": 3
+    "purchase_orders": 3,
+    "customers": 1
   },
   "users": [
     {
