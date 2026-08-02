@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T04:59:38.363Z",
+  "exported_at": "2026-08-02T05:00:15.213Z",
   "customers": [
     {
       "name": "Kreya",
@@ -116,12 +116,12 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T04:58:50.344Z"
+    "github_last_synced": "2026-08-02T04:59:40.446Z"
   },
   "seq": {
     "products": 2,
     "suppliers": 1,
-    "purchase_orders": 3,
+    "purchase_orders": 4,
     "customers": 1,
     "invoices": 1
   },
@@ -316,10 +316,46 @@
       "approved_at": "2026-08-01T09:09:20.168Z",
       "rejected_remarks": null,
       "hold_remarks": null
+    },
+    {
+      "id": 4,
+      "po_number": "PO/2026-27/0004",
+      "financial_year": "2026-27",
+      "sequence_no": 4,
+      "grn_status": "Not Received",
+      "supplier_id": 1,
+      "po_date": "2026-08-02",
+      "incoterms": "EXW",
+      "payment_terms": "Advance",
+      "subtotal": 1200,
+      "discount": 0,
+      "taxable_value": 1200,
+      "cgst_amount": 30,
+      "sgst_amount": 30,
+      "igst_amount": 0,
+      "total_tax": 60,
+      "grand_total": 1260,
+      "amount_in_words": "Rupees One Thousand Two Hundred Sixty Only",
+      "remarks": "POPO",
+      "tax_type": "CGST_SGST",
+      "status": "Pending Approval",
+      "items": [
+        {
+          "sr_no": 1,
+          "received_qty": 0,
+          "description": "Bio 1111",
+          "hsn_code": "4402900",
+          "gst_rate": 5,
+          "quantity": 1,
+          "unit": "MT",
+          "rate": 1200,
+          "amount": 1200
+        }
+      ]
     }
   ],
   "poCounters": {
-    "2026-27": 3
+    "2026-27": 4
   },
   "grns": [],
   "goodsReturns": [],
