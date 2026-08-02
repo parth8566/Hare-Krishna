@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T04:50:37.323Z",
+  "exported_at": "2026-08-02T04:51:49.540Z",
   "customers": [],
   "products": [
     {
@@ -14,6 +14,15 @@
     {
       "name": "Bio 1111",
       "hsn_code": "4402900",
+      "gst_rate": 5,
+      "unit": "MT",
+      "rate": 1200,
+      "is_active": true,
+      "id": 2
+    },
+    {
+      "name": "Parth Patel",
+      "hsn_code": "4402901",
       "gst_rate": 5,
       "unit": "MT",
       "rate": 1200,
@@ -52,10 +61,10 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": ""
+    "github_last_synced": "2026-08-02T04:50:41.567Z"
   },
   "seq": {
-    "products": 1,
+    "products": 2,
     "suppliers": 1,
     "purchase_orders": 3
   },
