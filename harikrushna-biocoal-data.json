@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T07:07:04.693Z",
+  "exported_at": "2026-08-02T07:07:42.730Z",
   "customers": [
     {
       "name": "Kreya",
@@ -139,11 +139,46 @@
           "amount": 1200
         }
       ]
+    },
+    {
+      "id": 2,
+      "invoice_number": "INV/2026-27/0002",
+      "financial_year": "2026-27",
+      "sequence_no": 2,
+      "invoice_date": "2026-08-02",
+      "customer_id": 4,
+      "place_of_supply": "",
+      "subtotal": 1200,
+      "discount": 0,
+      "taxable_value": 1200,
+      "cgst_amount": 0,
+      "sgst_amount": 0,
+      "igst_amount": 60,
+      "total_tax": 60,
+      "grand_total": 1260,
+      "amount_in_words": "Rupees One Thousand Two Hundred Sixty Only",
+      "remarks": "Ok",
+      "tax_type": "IGST",
+      "status": "Unpaid",
+      "amount_paid": 0,
+      "outstanding_amount": 1260,
+      "items": [
+        {
+          "sr_no": 1,
+          "description": "Bio 1111",
+          "hsn_code": "4402900",
+          "gst_rate": 5,
+          "quantity": 1,
+          "unit": "MT",
+          "rate": 1200,
+          "amount": 1200
+        }
+      ]
     }
   ],
   "payments": [],
   "counters": {
-    "2026-27": 1
+    "2026-27": 2
   },
   "settings": {
     "company_name": "HARIKRUSHNA BIOCOAL ENERGY",
@@ -180,7 +215,7 @@
     "suppliers": 1,
     "purchase_orders": 4,
     "customers": 4,
-    "invoices": 1,
+    "invoices": 2,
     "grns": 1,
     "grn_ref": 1
   },
