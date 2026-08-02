@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T04:58:48.206Z",
+  "exported_at": "2026-08-02T04:59:38.363Z",
   "customers": [
     {
       "name": "Kreya",
@@ -116,7 +116,7 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T04:54:55.134Z"
+    "github_last_synced": "2026-08-02T04:58:50.344Z"
   },
   "seq": {
     "products": 2,
