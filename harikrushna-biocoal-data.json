@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T07:05:12.075Z",
+  "exported_at": "2026-08-02T07:05:34.726Z",
   "customers": [
     {
       "name": "Kreya",
@@ -48,6 +48,22 @@
       "pan": "",
       "is_active": true,
       "id": 3
+    },
+    {
+      "name": "Pppppo",
+      "gstin": "HAJAAB",
+      "address": "",
+      "pincode": "",
+      "city": "",
+      "country": "India",
+      "contact_person": "",
+      "mobile": "",
+      "email": "",
+      "state": "",
+      "state_code": "",
+      "pan": "",
+      "is_active": true,
+      "id": 4
     }
   ],
   "products": [
@@ -157,13 +173,13 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T06:27:29.525Z"
+    "github_last_synced": "2026-08-02T07:05:14.816Z"
   },
   "seq": {
     "products": 3,
     "suppliers": 1,
     "purchase_orders": 4,
-    "customers": 3,
+    "customers": 4,
     "invoices": 1,
     "grns": 1,
     "grn_ref": 1
