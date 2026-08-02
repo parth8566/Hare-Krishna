@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T06:22:57.581Z",
+  "exported_at": "2026-08-02T06:23:25.146Z",
   "customers": [
     {
       "name": "Kreya",
@@ -45,6 +45,15 @@
       "rate": 1200,
       "is_active": true,
       "id": 2
+    },
+    {
+      "name": "Nandini",
+      "hsn_code": "440290012",
+      "gst_rate": 5,
+      "unit": "MT",
+      "rate": 1100,
+      "is_active": true,
+      "id": 3
     }
   ],
   "invoices": [
@@ -116,10 +125,10 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T05:02:32.460Z"
+    "github_last_synced": "2026-08-02T06:23:02.145Z"
   },
   "seq": {
-    "products": 2,
+    "products": 3,
     "suppliers": 1,
     "purchase_orders": 4,
     "customers": 1,
