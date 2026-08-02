@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T04:52:45.326Z",
+  "exported_at": "2026-08-02T04:54:52.782Z",
   "customers": [
     {
       "name": "Kreya",
@@ -47,9 +47,47 @@
       "id": 2
     }
   ],
-  "invoices": [],
+  "invoices": [
+    {
+      "id": 1,
+      "invoice_number": "INV/2026-27/0001",
+      "financial_year": "2026-27",
+      "sequence_no": 1,
+      "invoice_date": "2026-08-02",
+      "customer_id": 1,
+      "place_of_supply": "Gujarat",
+      "subtotal": 1200,
+      "discount": 0,
+      "taxable_value": 1200,
+      "cgst_amount": 30,
+      "sgst_amount": 30,
+      "igst_amount": 0,
+      "total_tax": 60,
+      "grand_total": 1260,
+      "amount_in_words": "Rupees One Thousand Two Hundred Sixty Only",
+      "remarks": "Test123",
+      "tax_type": "CGST_SGST",
+      "status": "Unpaid",
+      "amount_paid": 0,
+      "outstanding_amount": 1260,
+      "items": [
+        {
+          "sr_no": 1,
+          "description": "Bio 1111",
+          "hsn_code": "4402900",
+          "gst_rate": 5,
+          "quantity": 1,
+          "unit": "MT",
+          "rate": 1200,
+          "amount": 1200
+        }
+      ]
+    }
+  ],
   "payments": [],
-  "counters": {},
+  "counters": {
+    "2026-27": 1
+  },
   "settings": {
     "company_name": "HARIKRUSHNA BIOCOAL ENERGY",
     "address": "16, Pragati Industrial Estate, Modasa Road, Kapadwanj - 387620",
@@ -78,13 +116,14 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-02T04:51:51.747Z"
+    "github_last_synced": "2026-08-02T04:52:48.232Z"
   },
   "seq": {
     "products": 2,
     "suppliers": 1,
     "purchase_orders": 3,
-    "customers": 1
+    "customers": 1,
+    "invoices": 1
   },
   "users": [
     {
