@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-02T16:41:28.730Z",
+  "exported_at": "2026-08-04T04:17:20.536Z",
   "customers": [
     {
       "name": "Kreya",
@@ -482,5 +482,27 @@
   "stockThresholds": {},
   "supplierInvoices": [],
   "siCounters": {},
-  "supplierPayments": []
+  "supplierPayments": [],
+  "expenses": [
+    {
+      "id": 1,
+      "expense_no": "EXP/2026-27/0001",
+      "expense_date": "2026-08-02",
+      "category": "Electricity",
+      "expense_type": "Capital",
+      "vendor_name": "Brijesh",
+      "payment_mode": "Bank",
+      "reference_no": "CHECK001",
+      "amount": 1200,
+      "gst_amount": 120,
+      "total_amount": 1320,
+      "description": "Done",
+      "status": "Approved",
+      "attachment_name": "",
+      "attachment_data": ""
+    }
+  ],
+  "expenseCounters": {
+    "2026-27": 1
+  }
 }
