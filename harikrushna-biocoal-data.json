@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-04T14:24:27.991Z",
+  "exported_at": "2026-08-04T15:27:13.807Z",
   "customers": [
     {
       "name": "Kreya",
@@ -239,7 +239,7 @@
       "security_answer_hash": "adac56a972229c0a4453504c888ecc3f72fa43d7b44d944be2cd307efc00bfcc",
       "failed_attempts": 0,
       "locked_until": null,
-      "last_login": "2026-08-04T10:34:28.800Z",
+      "last_login": "2026-08-04T15:27:13.001Z",
       "created_at": "2026-07-31T05:21:20.470Z"
     },
     {
@@ -692,6 +692,16 @@
       "action": "Deactivate User",
       "doc_no": "brijesh",
       "description": "",
+      "status": "Success"
+    },
+    {
+      "id": 16,
+      "at": "2026-08-04T15:27:13.005Z",
+      "username": "admin",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "Login successful",
       "status": "Success"
     }
   ]
