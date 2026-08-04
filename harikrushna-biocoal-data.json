@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-04T04:32:13.265Z",
+  "exported_at": "2026-08-04T04:33:37.433Z",
   "customers": [
     {
       "name": "Kreya",
@@ -202,13 +202,13 @@
     "theme_header_text": "#FFFFFF",
     "theme_navbar_bg": "#2E7D32",
     "theme_navbar_text": "#FFFFFF",
-    "storage_folder_name": "Harekrishna Data",
+    "storage_folder_name": "",
     "storage_mode": "github",
     "github_owner": "parth8566",
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-04T04:31:13.305Z"
+    "github_last_synced": ""
   },
   "seq": {
     "products": 3,
