@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-04T07:17:13.701Z",
+  "exported_at": "2026-08-04T10:25:03.887Z",
   "customers": [
     {
       "name": "Kreya",
@@ -202,6 +202,10 @@
     "theme_header_text": "",
     "theme_navbar_bg": "",
     "theme_navbar_text": "",
+    "theme_preset": "light",
+    "theme_font_size": "medium",
+    "theme_compact": false,
+    "theme_card_style": "elevated",
     "storage_folder_name": "",
     "storage_mode": "github",
     "github_owner": "parth8566",
@@ -234,7 +238,7 @@
       "security_answer_hash": "adac56a972229c0a4453504c888ecc3f72fa43d7b44d944be2cd307efc00bfcc",
       "failed_attempts": 0,
       "locked_until": null,
-      "last_login": "2026-08-04T07:17:12.898Z",
+      "last_login": "2026-08-04T10:25:03.083Z",
       "created_at": "2026-07-31T05:21:20.470Z"
     },
     {
@@ -482,5 +486,39 @@
   "stockThresholds": {},
   "supplierInvoices": [],
   "siCounters": {},
-  "supplierPayments": []
+  "supplierPayments": [],
+  "expenses": [
+    {
+      "id": 1,
+      "expense_no": "EXP/2026-27/0001",
+      "expense_date": "2026-08-02",
+      "category": "Electricity",
+      "expense_type": "Capital",
+      "vendor_name": "Brijesh",
+      "payment_mode": "Bank",
+      "reference_no": "CHECK001",
+      "amount": 1200,
+      "gst_amount": 120,
+      "total_amount": 1320,
+      "description": "Done",
+      "status": "Approved",
+      "attachment_name": "",
+      "attachment_data": ""
+    }
+  ],
+  "expenseCounters": {
+    "2026-27": 1
+  },
+  "activityLog": [
+    {
+      "id": 1,
+      "at": "2026-08-04T10:25:03.086Z",
+      "username": "admin",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "Login successful",
+      "status": "Success"
+    }
+  ]
 }
