@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-04T15:53:40.767Z",
+  "exported_at": "2026-08-13T15:12:00.741Z",
   "customers": [
     {
       "name": "Kreya",
@@ -239,7 +239,7 @@
       "security_answer_hash": "adac56a972229c0a4453504c888ecc3f72fa43d7b44d944be2cd307efc00bfcc",
       "failed_attempts": 0,
       "locked_until": null,
-      "last_login": "2026-08-04T15:27:13.001Z",
+      "last_login": "2026-08-13T15:11:59.926Z",
       "created_at": "2026-07-31T05:21:20.470Z",
       "employee_id": "",
       "department": "",
@@ -718,6 +718,16 @@
       "action": "Update Profile",
       "doc_no": "",
       "description": "User profile updated",
+      "status": "Success"
+    },
+    {
+      "id": 18,
+      "at": "2026-08-13T15:11:59.929Z",
+      "username": "admin",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "Login successful",
       "status": "Success"
     }
   ]
