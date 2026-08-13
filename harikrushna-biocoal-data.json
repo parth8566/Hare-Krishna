@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-08-13T15:12:00.741Z",
+  "exported_at": "2026-08-13T15:13:11.723Z",
   "customers": [
     {
       "name": "Kreya",
@@ -202,17 +202,17 @@
     "theme_header_text": "#FFFFFF",
     "theme_navbar_bg": "#2E7D32",
     "theme_navbar_text": "#FFFFFF",
-    "theme_preset": "custom",
-    "theme_font_size": "medium",
-    "theme_compact": false,
-    "theme_card_style": "elevated",
     "storage_folder_name": "",
     "storage_mode": "github",
     "github_owner": "parth8566",
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-08-04T14:22:55.962Z"
+    "github_last_synced": "2026-08-04T14:22:55.962Z",
+    "theme_preset": "custom",
+    "theme_font_size": "medium",
+    "theme_compact": false,
+    "theme_card_style": "elevated"
   },
   "seq": {
     "products": 3,
@@ -239,7 +239,7 @@
       "security_answer_hash": "adac56a972229c0a4453504c888ecc3f72fa43d7b44d944be2cd307efc00bfcc",
       "failed_attempts": 0,
       "locked_until": null,
-      "last_login": "2026-08-13T15:11:59.926Z",
+      "last_login": "2026-08-13T15:13:10.919Z",
       "created_at": "2026-07-31T05:21:20.470Z",
       "employee_id": "",
       "department": "",
@@ -548,187 +548,5 @@
   ],
   "expenseCounters": {
     "2026-27": 1
-  },
-  "activityLog": [
-    {
-      "id": 1,
-      "at": "2026-08-04T10:25:03.086Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    },
-    {
-      "id": 2,
-      "at": "2026-08-04T10:32:50.903Z",
-      "username": "admin",
-      "module": "GitHub Sync",
-      "action": "Sync",
-      "doc_no": "",
-      "description": "Conflict — file changed on GitHub since last sync",
-      "status": "Failed"
-    },
-    {
-      "id": 3,
-      "at": "2026-08-04T10:33:00.990Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Logout",
-      "doc_no": "",
-      "description": "User logged out",
-      "status": "Success"
-    },
-    {
-      "id": 4,
-      "at": "2026-08-04T10:33:10.321Z",
-      "username": "Parth",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    },
-    {
-      "id": 5,
-      "at": "2026-08-04T10:33:15.357Z",
-      "username": "parth",
-      "module": "GitHub Sync",
-      "action": "Sync",
-      "doc_no": "",
-      "description": "Conflict — file changed on GitHub since last sync",
-      "status": "Failed"
-    },
-    {
-      "id": 6,
-      "at": "2026-08-04T10:33:28.056Z",
-      "username": "parth",
-      "module": "GitHub Sync",
-      "action": "Sync",
-      "doc_no": "",
-      "description": "Conflict — file changed on GitHub since last sync",
-      "status": "Failed"
-    },
-    {
-      "id": 7,
-      "at": "2026-08-04T10:33:58.259Z",
-      "username": "parth",
-      "module": "Settings",
-      "action": "Update Application Theme",
-      "doc_no": "",
-      "description": "Preset: custom",
-      "status": "Success"
-    },
-    {
-      "id": 8,
-      "at": "2026-08-04T10:34:23.118Z",
-      "username": "parth",
-      "module": "Authentication",
-      "action": "Logout",
-      "doc_no": "",
-      "description": "User logged out",
-      "status": "Success"
-    },
-    {
-      "id": 9,
-      "at": "2026-08-04T10:34:28.801Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    },
-    {
-      "id": 10,
-      "at": "2026-08-04T10:34:48.735Z",
-      "username": "admin",
-      "module": "User Management",
-      "action": "Edit User",
-      "doc_no": "parth",
-      "description": "User details updated",
-      "status": "Success"
-    },
-    {
-      "id": 11,
-      "at": "2026-08-04T10:34:52.343Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Logout",
-      "doc_no": "",
-      "description": "User logged out",
-      "status": "Success"
-    },
-    {
-      "id": 12,
-      "at": "2026-08-04T10:35:00.385Z",
-      "username": "Parth",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    },
-    {
-      "id": 13,
-      "at": "2026-08-04T10:35:07.231Z",
-      "username": "parth",
-      "module": "GitHub Sync",
-      "action": "Manual Sync",
-      "doc_no": "",
-      "description": "Synced with GitHub",
-      "status": "Success"
-    },
-    {
-      "id": 14,
-      "at": "2026-08-04T14:22:36.923Z",
-      "username": "admin",
-      "module": "GitHub Sync",
-      "action": "Manual Sync",
-      "doc_no": "",
-      "description": "Synced with GitHub",
-      "status": "Success"
-    },
-    {
-      "id": 15,
-      "at": "2026-08-04T14:24:27.190Z",
-      "username": "admin",
-      "module": "User Management",
-      "action": "Deactivate User",
-      "doc_no": "brijesh",
-      "description": "",
-      "status": "Success"
-    },
-    {
-      "id": 16,
-      "at": "2026-08-04T15:27:13.005Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    },
-    {
-      "id": 17,
-      "at": "2026-08-04T15:53:39.958Z",
-      "username": "admin",
-      "module": "Profile",
-      "action": "Update Profile",
-      "doc_no": "",
-      "description": "User profile updated",
-      "status": "Success"
-    },
-    {
-      "id": 18,
-      "at": "2026-08-13T15:11:59.929Z",
-      "username": "admin",
-      "module": "Authentication",
-      "action": "Login",
-      "doc_no": "",
-      "description": "Login successful",
-      "status": "Success"
-    }
-  ]
+  }
 }
