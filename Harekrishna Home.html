@@ -606,12 +606,13 @@ hr{border:none;border-top:1px solid var(--border);margin:14px 0;}
   </div>
 </div>
 
-<div class="modal-overlay" id="gh-token-modal" style="display:none!important;">
+<div class="modal-overlay" id="gh-token-modal">
   <div class="modal-box" style="max-width:480px;">
-    <h3>Enter GitHub Token</h3>
+    <h3>Connect / Update GitHub Token</h3>
     <p class="small-muted">Paste a fine-grained Personal Access Token scoped to only this one repository with "Contents: Read and write" permission.</p>
     <label>Personal Access Token</label>
-    <input type="password" id="gh-token-input" placeholder="github_pat_..." autocomplete="off">
+    <input type="password" id="gh-token-input" placeholder="github_pat_..." autocomplete="off" spellcheck="false">
+    <div id="gh-token-error" role="alert" aria-live="polite" style="display:none;color:#b42318;margin-top:8px;font-size:0.85rem;"></div>
     <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-weight:400;">
       <input type="checkbox" id="gh-token-remember" style="width:auto;">
       Remember this token on this device
@@ -1455,7 +1456,6 @@ const GH_TOKEN_PERSIST_KEY = 'biocoal_gh_token_remember'; // opt-in only — see
 let githubToken = '';
 try { githubToken = sessionStorage.getItem(GH_TOKEN_SESSION_KEY) || localStorage.getItem(GH_TOKEN_PERSIST_KEY) || ''; }
 catch (e) { githubToken = ''; }
-githubToken = '__backend_proxy__'; // proxy mode — real PAT is server-side
 let githubSyncStatus = 'none'; // 'none' | 'checking' | 'connected' | 'no-token' | 'error' | 'conflict'
 let githubSyncErrorMsg = '';
 let githubLastSha = null;      // last-known blob SHA of the data file; required to update it
@@ -1485,14 +1485,26 @@ function githubConfigured(){
 // trade-off the admin makes explicitly via the "Remember on this device"
 // checkbox — never the silent default.
 function setGithubToken(token, remember){
-  // Token is managed server-side in proxy mode — keep githubToken truthy.
-  if (token) githubToken = '__backend_proxy__';
+  githubToken = token || '';
+  try {
+    if (token) {
+      sessionStorage.setItem(GH_TOKEN_SESSION_KEY, token);
+      if (remember) localStorage.setItem(GH_TOKEN_PERSIST_KEY, token);
+      else localStorage.removeItem(GH_TOKEN_PERSIST_KEY);
+    } else {
+      sessionStorage.removeItem(GH_TOKEN_SESSION_KEY);
+      localStorage.removeItem(GH_TOKEN_PERSIST_KEY);
+    }
+  } catch (e) {
+    if (token) { githubToken = ''; throw new Error('Browser storage is unavailable. Enable site storage and try again.'); }
+  }
 }
 function githubTokenIsRemembered(){
   try { return !!localStorage.getItem(GH_TOKEN_PERSIST_KEY); } catch (e) { return false; }
 }
 async function ghApiRequest(method, path, body){
   const headers = { 'Accept': 'application/vnd.github+json' };
+  if (body) headers['Content-Type'] = 'application/json';
   if (githubToken) headers['Authorization'] = 'Bearer ' + githubToken;
   return fetch(GH_API + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
 }
@@ -1500,32 +1512,39 @@ function ghContentsPath(s){
   return `/repos/${encodeURIComponent(s.github_owner)}/${encodeURIComponent(s.github_repo)}/contents/`
     + s.github_path.split('/').map(encodeURIComponent).join('/');
 }
+async function githubResponseError(res, action){
+  const body = await res.json().catch(()=>({}));
+  let message = body.message || body.error || res.statusText || 'Unknown GitHub API error';
+  if (res.status === 401) message = 'GitHub rejected this token (expired or invalid). Re-enter a valid Personal Access Token.';
+  else if (res.status === 403) message = 'GitHub denied access. Check token approval and Contents read/write access for this repository.';
+  else if (res.status === 404) message = 'Repository or data file not found. Check the saved repository configuration and token repository access.';
+  const err = new Error(`GitHub ${action} failed (${res.status}): ${message}`);
+  err.status = res.status;
+  return err;
+}
 // Reads the configured file from GitHub. Works with no token for a public
 // repo. Returns { data, sha } — data is null if the file doesn't exist yet.
 async function ghReadSnapshot(){
-  const res = await fetch('/api/github/file');
-  if (!res.ok) {
-    const body = await res.json().catch(()=>({}));
-    throw new Error(`GitHub read failed (${res.status}): ${body.error || body.message || res.statusText}`);
-  }
-  return await res.json(); // { data, sha }
+  const s = DB.getSettings();
+  const path = ghContentsPath(s) + '?ref=' + encodeURIComponent(s.github_branch || 'main');
+  const res = await ghApiRequest('GET', path);
+  if (res.status === 404) return { data: null, sha: null };
+  if (!res.ok) throw await githubResponseError(res, 'read');
+  const file = await res.json();
+  if (!file || typeof file.content !== 'string') throw new Error('GitHub returned an unsupported file response.');
+  return { data: JSON.parse(base64ToUtf8(file.content)), sha: file.sha };
 }
 // Writes the data object back to GitHub as a commit. Requires a token with
 // write access. `sha` should be the current blob's sha (from the last
 // read) so GitHub can detect a conflicting change made elsewhere.
 async function ghWriteSnapshot(dataObj, sha){
-  const body = { data: dataObj, sha, message: `Auto-sync data — ${new Date().toISOString()}` };
-  const res = await fetch('/api/github/file', {
-    method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
-  });
-  if (!res.ok) {
-    const errBody = await res.json().catch(()=>({}));
-    const err = new Error(`GitHub write failed (${res.status}): ${errBody.error || errBody.message || res.statusText}`);
-    err.status = res.status;
-    throw err;
-  }
+  const s = DB.getSettings();
+  const body = { message: `Auto-sync data — ${new Date().toISOString()}`, content: utf8ToBase64(JSON.stringify(dataObj, null, 2)), branch: s.github_branch || 'main' };
+  if (sha) body.sha = sha;
+  const res = await ghApiRequest('PUT', ghContentsPath(s), body);
+  if (!res.ok) throw await githubResponseError(res, 'write');
   const json = await res.json();
-  return json.sha;
+  return json.content && json.content.sha ? json.content.sha : json.commit.sha;
 }
 function setGithubStatus(status, errorMsg){
   githubSyncStatus = status;
@@ -1636,38 +1655,57 @@ function normalizeGithubOwnerRepo(ownerRaw, repoRaw){
   return { owner, repo, corrected };
 }
 function saveGithubConfig(){
-  showToast('GitHub configuration is managed automatically.');
+  showToast('Repository settings are preserved in this application.');
 }
 function promptGithubToken(){
-  showToast('GitHub token is managed server-side — no manual entry required.');
+  const modal = document.getElementById('gh-token-modal');
+  const err = document.getElementById('gh-token-error');
+  if (err) { err.textContent = ''; err.style.display = 'none'; }
+  document.getElementById('gh-token-input').value = '';
+  document.getElementById('gh-token-remember').checked = false;
+  modal.classList.add('show');
+  setTimeout(() => document.getElementById('gh-token-input').focus(), 0);
 }
 function closeGithubTokenModal(){ document.getElementById('gh-token-modal').classList.remove('show'); }
 async function submitGithubToken(){
   const input = document.getElementById('gh-token-input');
+  const errorBox = document.getElementById('gh-token-error');
   const token = input.value.trim();
   const remember = document.getElementById('gh-token-remember').checked;
-  if (!token) { showToast('Please paste a token, or click Cancel.', 'error'); return; }
-  setGithubToken(token, remember);
-  closeGithubTokenModal();
+  if (!token) { errorBox.textContent = 'Paste your GitHub token to continue.'; errorBox.style.display = 'block'; input.focus(); return; }
+  const previousToken = githubToken;
+  githubToken = token; // held in memory only while validating
   githubSyncStatus = 'checking';
   renderStorageModeCardStatus();
   try {
-    if (githubLastSha === null) {
-      const { data, sha } = await ghReadSnapshot();
-      githubLastSha = sha;
-      if (data && confirm('Load the data currently saved in this GitHub file? This will replace what\'s shown in this browser tab.')) {
-        applySnapshotToDB(data, false); // data came FROM GitHub — no need to push it back
-      }
+    const s = DB.getSettings();
+    const repoRes = await ghApiRequest('GET', `/repos/${encodeURIComponent(s.github_owner)}/${encodeURIComponent(s.github_repo)}`);
+    if (!repoRes.ok) throw await githubResponseError(repoRes, 'connection');
+    const repo = await repoRes.json();
+    if (repo.permissions && repo.permissions.push === false) throw new Error('This token can access the repository but cannot write to it. Grant Contents: Read and write, then try again.');
+    const remote = await ghReadSnapshot();
+    githubLastSha = remote.sha;
+    setGithubToken(token, remember);
+    closeGithubTokenModal();
+    if (remote.data && confirm("Load the data currently saved in this GitHub file? This will replace what's shown in this browser tab.")) {
+      applySnapshotToDB(remote.data, false);
     }
-    await runGithubSync();
-    if (githubSyncStatus === 'connected') showToast('Token accepted — write access confirmed.');
+    if (!remote.data) await runGithubSync();
+    else { setGithubStatus('connected'); startGithubPolling(); }
+    if (githubSyncStatus === 'connected') showToast('GitHub connection verified.');
   } catch (e) {
-    setGithubStatus('error', e.message);
-    showToast('That token did not work: ' + e.message, 'error');
+    githubToken = previousToken;
+    const msg = e.message;
+    errorBox.textContent = msg; errorBox.style.display = 'block';
+    setGithubStatus(previousToken ? 'error' : 'no-token', msg);
+    showToast(msg, 'error');
   }
 }
 function clearGithubToken(){
-  showToast('GitHub token is managed server-side and cannot be cleared from this interface.', 'error');
+  setGithubToken('', false);
+  githubLastSha = null;
+  setGithubStatus('no-token', 'Token removed. Enter a token to enable GitHub writes.');
+  showToast('GitHub token cleared from this browser.');
 }
 async function syncGithubNow(){
   if (!githubToken) { promptGithubToken(); return; }
@@ -1753,17 +1791,19 @@ function getGithubPanelHTML(){
   return `
     <p class="small-muted">GitHub sync is configured automatically. All data is saved to the repository below.</p>
     <div class="grid grid-2" style="margin-top:6px;">
-      <div><label>Repository Owner</label><input value="parth8566" disabled></div>
-      <div><label>Repository Name</label><input value="Hare-Krishna" disabled></div>
-      <div><label>File Path</label><input value="harikrushna-biocoal-data.json" disabled></div>
-      <div><label>Branch</label><input value="main" disabled></div>
+      <div><label>Repository Owner</label><input value="${escapeHtml(s.github_owner || '')}" disabled></div>
+      <div><label>Repository Name</label><input value="${escapeHtml(s.github_repo || '')}" disabled></div>
+      <div><label>File Path</label><input value="${escapeHtml(s.github_path || '')}" disabled></div>
+      <div><label>Branch</label><input value="${escapeHtml(s.github_branch || 'main')}" disabled></div>
     </div>
     <div style="margin:12px 0 4px;">
       <div id="github-sync-status" class="storage-status-${meta.cls}" style="font-size:0.85rem;font-weight:600;">${meta.label}</div>
       ${s.github_last_synced ? `<div class="small-muted" style="margin-top:2px;">Last synced: ${new Date(s.github_last_synced).toLocaleString()}</div>` : ''}
     </div>
     ${canEdit ? `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+      <button type="button" class="btn btn-brand" onclick="promptGithubToken()">🔑 Connect / Update GitHub Token</button>
       <button type="button" class="btn btn-outline" onclick="syncGithubNow()">🔄 Sync Now</button>
+      <button type="button" class="btn btn-outline" onclick="clearGithubToken()">Clear Token</button>
     </div>` : ''}`;
 }
 
@@ -8368,8 +8408,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     DB.getUsers(); // ensure default admin is seeded on first run
     // Auto-configure hardcoded GitHub connection on every startup
-    (function(){ const _s=DB.getSettings(); _s.storage_mode='github'; _s.github_owner='parth8566'; _s.github_repo='Hare-Krishna'; _s.github_path='harikrushna-biocoal-data.json'; _s.github_branch='main'; DB.saveSettings(_s); })();
-    githubToken='__backend_proxy__'; // proxy mode
+    (function(){ const _s=DB.getSettings(); _s.storage_mode='github'; _s.github_owner=_s.github_owner||'parth8566'; _s.github_repo=_s.github_repo||'Hare-Krishna'; _s.github_path=_s.github_path||'harikrushna-biocoal-data.json'; _s.github_branch=_s.github_branch||'main'; DB.saveSettings(_s); })();
     await initAutoSyncOnStartup(); // pull the latest snapshot from GitHub before first render
     updateDataWarningBanner();
     updateFolderStatusBanner();
