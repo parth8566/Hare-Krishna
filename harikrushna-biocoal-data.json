@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-11-05T11:57:56.350Z",
+  "exported_at": "2026-11-05T11:59:15.752Z",
   "customers": [
     {
       "name": "Kreya",
@@ -1190,6 +1190,36 @@
       "doc_no": "brijesh",
       "description": "User details updated",
       "status": "Success"
+    },
+    {
+      "id": 65,
+      "at": "2026-11-05T11:58:19.384Z",
+      "username": "Brijesh",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "no such active user",
+      "status": "Failed"
+    },
+    {
+      "id": 66,
+      "at": "2026-11-05T11:58:42.127Z",
+      "username": "Brijesh Patel",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "no such active user",
+      "status": "Failed"
+    },
+    {
+      "id": 67,
+      "at": "2026-11-05T11:59:02.525Z",
+      "username": "brijesh",
+      "module": "Authentication",
+      "action": "Login",
+      "doc_no": "",
+      "description": "no such active user",
+      "status": "Failed"
     }
   ]
 }
