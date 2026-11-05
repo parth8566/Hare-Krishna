@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-11-05T11:57:21.024Z",
+  "exported_at": "2026-11-05T11:57:39.234Z",
   "customers": [
     {
       "name": "Kreya",
@@ -212,7 +212,7 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-11-05T11:56:52.698Z"
+    "github_last_synced": "2026-11-05T11:57:23.995Z"
   },
   "seq": {
     "products": 3,
@@ -274,8 +274,8 @@
       "active": false,
       "email": "",
       "mobile": "",
-      "salt": "1kbrevxwazjhmw3hqhq9",
-      "password_hash": "73088883bfeae3b4e6b507e8f217c3dd2f802c8d99dc9f2f3cb399f32741239e",
+      "salt": "siotvx9bjdgmw3hr0v7",
+      "password_hash": "ee8feddc3b94f831217e7056ad81643de4cda2f0068d0ae7a8612477e92e85ae",
       "security_question": null,
       "security_answer_hash": null,
       "failed_attempts": 0,
@@ -1163,6 +1163,16 @@
     {
       "id": 62,
       "at": "2026-11-05T11:57:12.898Z",
+      "username": "admin",
+      "module": "User Management",
+      "action": "Reset Password",
+      "doc_no": "brijesh",
+      "description": "Temporary password issued by admin",
+      "status": "Success"
+    },
+    {
+      "id": 63,
+      "at": "2026-11-05T11:57:37.700Z",
       "username": "admin",
       "module": "User Management",
       "action": "Reset Password",
