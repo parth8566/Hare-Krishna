@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-11-05T11:56:46.115Z",
+  "exported_at": "2026-11-05T11:56:50.071Z",
   "customers": [
     {
       "name": "Kreya",
@@ -212,7 +212,7 @@
     "github_repo": "Hare-Krishna",
     "github_path": "harikrushna-biocoal-data.json",
     "github_branch": "main",
-    "github_last_synced": "2026-11-05T11:48:56.912Z"
+    "github_last_synced": "2026-11-05T11:56:49.263Z"
   },
   "seq": {
     "products": 3,
@@ -1148,6 +1148,16 @@
       "action": "Logout",
       "doc_no": "",
       "description": "User logged out",
+      "status": "Success"
+    },
+    {
+      "id": 61,
+      "at": "2026-11-05T11:56:49.269Z",
+      "username": "admin",
+      "module": "GitHub Sync",
+      "action": "Manual Sync",
+      "doc_no": "",
+      "description": "Synced with GitHub",
       "status": "Success"
     }
   ]
